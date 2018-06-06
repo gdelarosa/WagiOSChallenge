@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:WagiOSChallenge.xcodeproj">
+      location = "self:/Users/ginahomefolder/Desktop/WagiOSChallenge/WagiOSChallenge.xcodeproj">
    </FileRef>
 </Workspace>

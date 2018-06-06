@@ -1,15 +1,13 @@
 //
-//  ViewController.h
+//  UserTableViewCell.h
 //  WagiOSChallenge
 //
-//  Created by Gina De La Rosa on 6/5/18.
+//  Created by Gina De La Rosa on 6/6/18.
 //  Copyright © 2018 Gina De La Rosa. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface UserTableViewCell : UITableViewCell
 
 @end
-

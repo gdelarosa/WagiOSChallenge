@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7708A37A20C840D700202184 /* UserTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708A37920C840D700202184 /* UserTableViewCell.m */; };
+		7708A37D20C8410300202184 /* NSObject+User.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708A37C20C8410300202184 /* NSObject+User.m */; };
+		7708A38020C8414D00202184 /* UserTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7708A37F20C8414D00202184 /* UserTableViewController.m */; };
 		7710095020C73FE600582066 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7710094F20C73FE600582066 /* AppDelegate.m */; };
-		7710095320C73FE600582066 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7710095220C73FE600582066 /* ViewController.m */; };
 		7710095620C73FE600582066 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7710095420C73FE600582066 /* Main.storyboard */; };
 		7710095820C73FE700582066 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7710095720C73FE700582066 /* Assets.xcassets */; };
 		7710095B20C73FE700582066 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7710095920C73FE700582066 /* LaunchScreen.storyboard */; };
@@ -16,11 +18,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7708A37820C840D700202184 /* UserTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UserTableViewCell.h; path = WagiOSChallenge/View/UserTableViewCell.h; sourceTree = SOURCE_ROOT; };
+		7708A37920C840D700202184 /* UserTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UserTableViewCell.m; path = WagiOSChallenge/View/UserTableViewCell.m; sourceTree = SOURCE_ROOT; };
+		7708A37B20C8410300202184 /* NSObject+User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "NSObject+User.h"; path = "WagiOSChallenge/Model/NSObject+User.h"; sourceTree = SOURCE_ROOT; };
+		7708A37C20C8410300202184 /* NSObject+User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "NSObject+User.m"; path = "WagiOSChallenge/Model/NSObject+User.m"; sourceTree = SOURCE_ROOT; };
+		7708A37E20C8414D00202184 /* UserTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = UserTableViewController.h; path = WagiOSChallenge/Controller/UserTableViewController.h; sourceTree = SOURCE_ROOT; };
+		7708A37F20C8414D00202184 /* UserTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = UserTableViewController.m; path = WagiOSChallenge/Controller/UserTableViewController.m; sourceTree = SOURCE_ROOT; };
 		7710094B20C73FE600582066 /* WagiOSChallenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WagiOSChallenge.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7710094E20C73FE600582066 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7710094F20C73FE600582066 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		7710095120C73FE600582066 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		7710095220C73FE600582066 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		7710095520C73FE600582066 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7710095720C73FE700582066 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7710095A20C73FE700582066 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -39,6 +45,56 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7708A37020C83F3A00202184 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				7710095920C73FE700582066 /* LaunchScreen.storyboard */,
+				7710095420C73FE600582066 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		7708A37120C83F4C00202184 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				7710095D20C73FE700582066 /* main.m */,
+				7710094E20C73FE600582066 /* AppDelegate.h */,
+				7710094F20C73FE600582066 /* AppDelegate.m */,
+				7710095720C73FE700582066 /* Assets.xcassets */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		7708A37220C83F5500202184 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7708A37E20C8414D00202184 /* UserTableViewController.h */,
+				7708A37F20C8414D00202184 /* UserTableViewController.m */,
+			);
+			name = Controller;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		7708A37320C83F6200202184 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7708A37820C840D700202184 /* UserTableViewCell.h */,
+				7708A37920C840D700202184 /* UserTableViewCell.m */,
+			);
+			name = View;
+			path = "New Group1";
+			sourceTree = "<group>";
+		};
+		7708A37420C83F6900202184 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7708A37B20C8410300202184 /* NSObject+User.h */,
+				7708A37C20C8410300202184 /* NSObject+User.m */,
+			);
+			name = Model;
+			path = "New Group2";
+			sourceTree = "<group>";
+		};
 		7710094220C73FE600582066 = {
 			isa = PBXGroup;
 			children = (
@@ -58,15 +114,12 @@
 		7710094D20C73FE600582066 /* WagiOSChallenge */ = {
 			isa = PBXGroup;
 			children = (
-				7710094E20C73FE600582066 /* AppDelegate.h */,
-				7710094F20C73FE600582066 /* AppDelegate.m */,
-				7710095120C73FE600582066 /* ViewController.h */,
-				7710095220C73FE600582066 /* ViewController.m */,
-				7710095420C73FE600582066 /* Main.storyboard */,
-				7710095720C73FE700582066 /* Assets.xcassets */,
-				7710095920C73FE700582066 /* LaunchScreen.storyboard */,
+				7708A37420C83F6900202184 /* Model */,
+				7708A37320C83F6200202184 /* View */,
+				7708A37220C83F5500202184 /* Controller */,
+				7708A37120C83F4C00202184 /* Utilities */,
+				7708A37020C83F3A00202184 /* Storyboards */,
 				7710095C20C73FE700582066 /* Info.plist */,
-				7710095D20C73FE700582066 /* main.m */,
 			);
 			path = WagiOSChallenge;
 			sourceTree = "<group>";
@@ -141,7 +194,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7710095320C73FE600582066 /* ViewController.m in Sources */,
+				7708A37D20C8410300202184 /* NSObject+User.m in Sources */,
+				7708A38020C8414D00202184 /* UserTableViewController.m in Sources */,
+				7708A37A20C840D700202184 /* UserTableViewCell.m in Sources */,
 				7710095E20C73FE700582066 /* main.m in Sources */,
 				7710095020C73FE600582066 /* AppDelegate.m in Sources */,
 			);
