@@ -10,4 +10,11 @@
 
 @interface UserTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *gravatarImage;
+@property (weak, nonatomic) IBOutlet UILabel *username;
+@property (weak, nonatomic) IBOutlet UILabel *goldBadge;
+@property (weak, nonatomic) IBOutlet UILabel *silverBadge;
+@property (weak, nonatomic) IBOutlet UILabel *bronzeBadge;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *gravatarActivity;
+
 @end

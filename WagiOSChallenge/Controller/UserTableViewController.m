@@ -7,8 +7,14 @@
 //
 
 #import "UserTableViewController.h"
+#import "User.h"
+#import "UserTableViewCell.h"
+#import <SDWebImage/UIImageView+WebCache.h>
 
-@interface UserTableViewController ()
+@interface UserTableViewController () <UIScrollViewDelegate>
+
+@property UsersModel *model;
+@property NSURL *userURL;
 
 @end
 
@@ -17,82 +23,84 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.model = [[UsersModel alloc] init];
+    self.model.site = @"stackoverflow";
+    [self.model initialLoad];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return self.model.users.count;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UIView *view = [UIView new];
+    [view setBackgroundColor:[UIColor clearColor]];
+    return view;
+}
+
+- (UserTableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    UserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    cell.username.text = self.model.users[indexPath.row][@"display_name"];
+    
+    cell.goldBadge.text = [NSString stringWithFormat:@"• %@",
+                           self.model.users[indexPath.row][@"gold"]];
+    
+    cell.silverBadge.text = [NSString stringWithFormat:@"• %@",
+                             self.model.users[indexPath.row][@"silver"]];
+    
+    cell.bronzeBadge.text = [NSString stringWithFormat:@"• %@",
+                             self.model.users[indexPath.row][@"bronze"]];
+    
+    cell.imageView.image = nil;
+    cell.imageView.layer.borderWidth = 2.0;
+    cell.imageView.layer.borderColor = [UIColor orangeColor].CGColor;
+    cell.imageView.layer.masksToBounds = YES;
+    
+    [cell.gravatarActivity startAnimating];
+    [cell setNeedsLayout];
+    NSURL *profileImageURL = [NSURL URLWithString:self.model.users[indexPath.row][@"profile_image_url"]];
+    
+    //Background thread to fetch gravatar
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
+        NSData *profileImageData = [NSData dataWithContentsOfURL:profileImageURL];
+        UIImage *profileImage = [UIImage imageWithData:profileImageData];
+        
+        //Main thread to place UIImage in the cell
+        dispatch_sync(dispatch_get_main_queue(), ^(void) {
+            NSArray *visibleIndexPaths = self.tableView.indexPathsForVisibleRows;
+            if ( [visibleIndexPaths containsObject:indexPath] ) {
+                cell.imageView.image = profileImage;
+                [cell.gravatarActivity stopAnimating];
+                [cell setNeedsLayout];
+            }
+        });
+    });
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma mark - Scroll View Delegate
+
+-(void)scrollViewDidScroll: (UIScrollView*)scrollView {
+    CGFloat frameHeight = scrollView.frame.size.height;
+    CGFloat contentHeight = scrollView.contentSize.height;
+    CGFloat scrollOffset = scrollView.contentOffset.y;
+    
+    if ( self.model.users != nil && (scrollOffset + frameHeight >= contentHeight) ) {
+        [self.model loadUsers];
+        [self.tableView reloadData];
+    }
 }
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
+
+
