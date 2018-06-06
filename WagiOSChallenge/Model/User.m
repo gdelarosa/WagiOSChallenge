@@ -36,7 +36,6 @@
                                                                   error:nil];
     NSMutableArray *userInformation = json[@"items"];
     
-    // Update the model
     for ( id user in userInformation ) {
         NSDictionary *userDict = @{@"user_id": user[@"user_id"],
                                    @"display_name": user[@"display_name"],

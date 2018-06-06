@@ -68,12 +68,10 @@
     [cell setNeedsLayout];
     NSURL *profileImageURL = [NSURL URLWithString:self.model.users[indexPath.row][@"profile_image_url"]];
     
-    //Background thread to fetch gravatar
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^(void) {
         NSData *profileImageData = [NSData dataWithContentsOfURL:profileImageURL];
         UIImage *profileImage = [UIImage imageWithData:profileImageData];
         
-        //Main thread to place UIImage in the cell
         dispatch_sync(dispatch_get_main_queue(), ^(void) {
             NSArray *visibleIndexPaths = self.tableView.indexPathsForVisibleRows;
             if ( [visibleIndexPaths containsObject:indexPath] ) {
