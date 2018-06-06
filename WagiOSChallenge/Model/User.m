@@ -10,16 +10,11 @@
 
 @implementation UsersModel
 
-- (void)initialLoad {
+- (void)loadUsers {
     if ( !self.users ) {
         self.users = [[NSMutableArray alloc] init];
-        self.currentPage = 0;
+        self.currentPage = 1;
     }
-    [self loadUsers];
-}
-
-- (void)loadUsers {
-    self.currentPage += 1;
 
     NSString *urlFormatString = @"https://api.stackexchange.com/2.2/users?page=%d&site=%@";
     NSString *urlString = [NSString stringWithFormat:urlFormatString, self.currentPage, self.site];

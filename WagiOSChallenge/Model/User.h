@@ -14,7 +14,6 @@
 @property NSInteger currentPage;
 @property NSString *site;
 
-- (void)initialLoad;
 - (void)loadUsers;
 
 @end

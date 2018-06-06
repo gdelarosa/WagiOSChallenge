@@ -24,7 +24,7 @@
     
     self.model = [[UsersModel alloc] init];
     self.model.site = @"stackoverflow";
-    [self.model initialLoad];
+    [self.model loadUsers];
 }
 
 
