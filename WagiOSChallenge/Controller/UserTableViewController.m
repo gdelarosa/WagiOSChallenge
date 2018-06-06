@@ -9,7 +9,6 @@
 #import "UserTableViewController.h"
 #import "User.h"
 #import "UserTableViewCell.h"
-#import <SDWebImage/UIImageView+WebCache.h>
 
 @interface UserTableViewController () <UIScrollViewDelegate>
 
